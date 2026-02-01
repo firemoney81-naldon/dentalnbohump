@@ -1,23 +1,568 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- Schema.org FAQ 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "치과보험비용은 가입자에 따라 왜 달라지나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "치과보험료는 가입자의 연령, 성별, 기존 치아 상태(진단 결과), 보장 범위(임플란트, 크라운 등 보철 치료 포함 여부), 갱신형/비갱신형 선택, 가입 시점 등에 따라 크게 달라집니다. 특히 보철 치료 보장 금액이 클수록, 갱신형보다 비갱신형을 선택할 경우 초기 비용이 높을 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "치과보험의 갱신형과 비갱신형 중 어떤 것이 더 유리한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "갱신형은 초기 보험료가 저렴하지만 갱신 시점에 따라 보험료가 인상될 수 있어 젊은 층이나 단기 가입자에게 유리합니다. 비갱신형은 초기 보험료가 상대적으로 높지만 만기까지 보험료가 변동되지 않아 장기간 보장을 원하는 경우나 노후를 대비하는 층에게 유리합니다. 각자의 경제 상황과 보장 기간을 고려하여 선택하는 것이 중요합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "치과보험 가입 시 꼭 확인해야 할 유의사항은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "면책기간 및 감액기간을 반드시 확인해야 합니다. 일반적으로 가입 후 일정 기간(면책기간) 동안은 보장이 되지 않으며, 면책기간 이후에도 일정 기간(감액기간) 동안은 보험금의 일부만 지급될 수 있습니다. 또한, 기존에 치료했거나 치료 예정인 치아는 보장에서 제외되므로 가입 전 고지 의무를 정확히 이행해야 합니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+  <style>
+    :root {
+      --primary-color: #007BFF; /* Main Blue */
+      --secondary-color: #6C757D; /* Grayish Blue */
+      --accent-color: #28A745; /* Green Accent */
+      --highlight-color: #F8F9FA; /* Light Gray Background */
+      --text-color: #212529; /* Dark Text */
+      --bg-light: #F0F4F8; /* Light Page Background */
+      --bg-white: #ffffff; /* White Section Background */
+      --btn-color: #FF6F61; /* Orange Red CTA */
+      --btn-hover: #E65A4F; /* Darker CTA Hover */
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --shadow-heavy: rgba(0, 0, 0, 0.15);
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0; padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text-color);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    header {
+      background-color: var(--primary-color);
+      padding: 25px 20px;
+      text-align: center;
+      color: var(--bg-white);
+      box-shadow: 0 4px 10px var(--shadow-light);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    header h1 a {
+      color: var(--bg-white);
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #4B86B4 100%);
+      color: var(--bg-white);
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 {
+      font-size: 3.2em;
+      margin-bottom: 20px;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px var(--shadow-heavy);
+      line-height: 1.3;
+    }
+    .hero p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    .cta-btn {
+      background-color: var(--btn-color);
+      color: var(--bg-white);
+      padding: 18px 45px;
+      font-size: 1.3em;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px var(--shadow-heavy);
+    }
+    .cta-btn:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-3px);
+    }
+
+    /* Comparison Form Box */
+    .compare-form-box {
+      background-color: var(--bg-white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px var(--shadow-light);
+      margin-top: 30px;
+      text-align: left;
+    }
+    .compare-form-box h2 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 2em;
+      font-weight: 700;
+    }
+    .compare-form-box label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    .compare-form-box input[type="text"],
+    .compare-form-box input[type="tel"],
+    .compare-form-box input[type="number"],
+    .compare-form-box select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1em;
+      color: #555;
+    }
+    .compare-form-box .form-group {
+        display: flex;
+        gap: 20px;
+    }
+    .compare-form-box .form-group > div {
+        flex: 1;
+    }
+
+    /* Content Sections */
+    .content-section {
+      margin-top: 40px;
+      background-color: var(--bg-white);
+      padding: 60px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px var(--shadow-light);
+    }
+    .content-section h2 {
+      font-size: 2.5em;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .content-section h3 {
+      font-size: 1.8em;
+      color: var(--primary-color);
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 10px;
+    }
+    .content-section p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+        color: #444;
+    }
+
+    /* Feature Grid */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .feature-grid .item {
+      width: calc(33.33% - 20px);
+      margin: 10px;
+      padding: 25px;
+      background-color: var(--highlight-color);
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-grid .item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .feature-grid .item img {
+      width: 60px; height: 60px;
+      margin-bottom: 15px;
+    }
+    .feature-grid .item h3 {
+        font-size: 1.4em;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: 700;
+        border: none;
+        padding: 0;
+        color: var(--secondary-color);
+    }
+    .feature-grid .item p {
+        font-size: 1em;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    /* Keyword List */
+    .keyword-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .keyword-list li {
+      background-color: var(--secondary-color);
+      color: var(--bg-white);
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.95em;
+    }
+
+    /* Table styles */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.05em;
+    }
+    .comparison-table th {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      font-weight: 700;
+    }
+    .comparison-table td:first-child {
+      background-color: var(--highlight-color);
+      font-weight: 600;
+    }
+
+    /* FAQ section */
+    .faq-item {
+      border-bottom: 1px solid #eee;
+      padding: 20px 0;
+    }
+    .faq-item h3 {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.4em;
+      color: var(--primary-color);
+      font-weight: 600;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .faq-item h3::after {
+      content: '+';
+      font-size: 1.5em;
+      color: var(--accent-color);
+      transition: transform 0.3s;
+    }
+    .faq-item.active h3::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+    .faq-item p {
+      display: none;
+      padding-top: 15px;
+      color: #555;
+      font-size: 1.1em;
+      line-height: 1.7;
+    }
+    .faq-item.active p {
+      display: block;
+    }
+    
+    /* References section */
+    .references ul {
+        list-style: disc;
+        margin-left: 20px;
+        padding: 0;
+        font-size: 1.1em;
+    }
+    .references li {
+        margin-bottom: 10px;
+    }
+    .references a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    .references a:hover {
+        text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9em;
+    }
+    footer a {
+      color: var(--bg-white);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.4em; }
+      .hero p { font-size: 1.2em; }
+      .cta-btn { padding: 15px 30px; font-size: 1.1em; }
+      .compare-form-box { padding: 25px; }
+      .compare-form-box .form-group { flex-direction: column; }
+      .content-section h2 { font-size: 2.2em; }
+      .feature-grid .item { width: 100%; margin: 10px 0; }
+      .keyword-list li { margin: 3px; font-size: 0.9em; }
+      .comparison-table th, .comparison-table td { font-size: 0.9em; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">치과보험비용 비교 가이드</a></h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>2026년 치과보험비용<br>전문가와 함께 정확하게 비교하세요</h1>
+        <p>복잡한 치아보험 가입, 갱신형/비갱신형 선택부터 임플란트 보장 범위까지<br>나에게 맞는 최적의 치과보험을 찾는 방법을 알려드립니다.</p>
+        <div class="compare-form-box">
+          <h2>맞춤형 치과보험 견적 무료 요청</h2>
+          <p>간단한 정보 입력으로 여러 보험사의 치아보험 예상 비용과 상품 정보를 확인해 보세요.</p>
+          <form action="#" method="post">
+            <div class="form-group">
+                <div>
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+                </div>
+                <div>
+                    <label for="phone">연락처</label>
+                    <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="age">나이</label>
+                    <input type="number" id="age" name="age" placeholder="만 나이를 입력하세요 (예: 35)" required>
+                </div>
+                <div>
+                    <label for="coverage-type">희망 보장 유형</label>
+                    <select id="coverage-type" name="coverage-type" required>
+                        <option value="">선택하세요</option>
+                        <option value="implant">임플란트, 크라운 등 보철 치료</option>
+                        <option value="filling">충치, 잇몸 치료 등 보존 치료</option>
+                        <option value="child">어린이 치아보험 (보존+교정)</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="cta-btn">맞춤 견적 요청하기</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>치과보험비용, 왜 비교해야 할까요?</h2>
+        <p>치과 치료는 예상치 못한 상황에서 고액의 비용이 발생하기 쉽습니다. 특히 임플란트나 크라운 같은 보철 치료는 건강보험 적용이 제한되어 환자 부담이 매우 높습니다. 치과보험은 이러한 고액 치료비에 대비하기 위한 필수적인 금융 상품입니다.</p>
+
+        <p>하지만 치과보험 상품은 보험사별로 보장 금액, 면책/감액 기간, 가입 조건, 그리고 가장 중요한 치과보험비용 (월 보험료)이 천차만별입니다. 특히 2026년 들어서 치과 치료비가 꾸준히 상승하는 추세이며, 이에 따라 보험 상품의 조건도 지속적으로 변화하고 있습니다. 따라서 단순하게 저렴한곳을 찾는 것보다, 나의 치아 상태와 예상되는 미래 치료 수요에 맞춰 가장 합리적인 가입 상품을 비교하는 것이 현명합니다.</p>
+
+        <div class="feature-grid">
+          <div class="item">
+            <img src="https://via.placeholder.com/80/007BFF/fff?text=ICON1" alt="투명한 정보 비교 아이콘">
+            <h3>투명한 보장 비교</h3>
+            <p>보장 내용과 특약, 면책/감액 기간 등 숨겨진 정보를 투명하게 비교하여 불필요한 비용을 줄일 수 있습니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://via.placeholder.com/80/007BFF/fff?text=ICON2" alt="맞춤 설계 아이콘">
+            <h3>개인 맞춤 설계</h3>
+            <p>가입자의 연령대, 치아 상태, 희망하는 보장 금액에 맞춰 최적의 상품을 제안받을 수 있습니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://via.placeholder.com/80/007BFF/fff?text=ICON3" alt="비용 절감 아이콘">
+            <h3>비용 절감 효과</h3>
+            <p>여러 보험사의 치과보험비용을 한눈에 비교하여 월 보험료를 최소화하고 보장은 최대로 확보합니다.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:50px;">함께 많이 찾는 키워드</h3>
+        <ul class="keyword-list">
+          <li>#치과보험비용</li>
+          <li>#치아보험가격</li>
+          <li>#갱신형비갱신형차이점</li>
+          <li>#임플란트보험</li>
+          <li>#어린이치아보험</li>
+          <li>#치아보험순위</li>
+          <li>#치아보험견적</li>
+          <li>#치아보험추천</li>
+          <li>#치아보험장단점</li>
+          <li>#치아보험저렴한곳</li>
+          <li>#치아보험내돈내산후기</li>
+          <li>#치과보험가입조건</li>
+          <li>#치아보험면책기간</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>갱신형 vs 비갱신형: 치아보험 장단점 비교</h2>
+        <p>치과보험 가입 시 가장 중요한 결정 요소는 갱신형과 비갱신형 중 어떤 것을 선택하느냐입니다. 이는 치과보험비용 전체에 큰 영향을 미치므로 각 유형의 특징을 정확히 이해하는 것이 필수적입니다.</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>구분</th>
+                    <th>갱신형 치과보험</th>
+                    <th>비갱신형 치과보험</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>보험료 구조</td>
+                    <td>초기 보험료가 저렴하며 갱신 시점(보통 1년/3년/5년)마다 연령 증가 및 손해율에 따라 보험료가 인상됩니다.</td>
+                    <td>초기 보험료가 다소 높으나 계약 기간 동안 보험료 변동 없이 동일하게 유지됩니다.</td>
+                </tr>
+                <tr>
+                    <td>총 납입 비용</td>
+                    <td>장기간 유지 시 총 납입 보험료가 비갱신형보다 높아질 가능성이 높습니다.</td>
+                    <td>단기간 납입하더라도 총 납입 비용이 예측 가능하며, 장기간 유지 시 갱신형보다 저렴해질 수 있습니다.</td>
+                </tr>
+                <tr>
+                    <td>추천 대상</td>
+                    <td>젊은 연령대 (20~30대 초반), 치아 상태가 양호하여 단기간 보장만 원하는 가입자.</td>
+                    <td>30대 중반 이상, 장기간 (10년 이상) 보장을 희망하거나 노후 치과 치료를 대비하는 가입자.</td>
+                </tr>
+                <tr>
+                    <td>치과보험비용 비교</td>
+                    <td>초기 비용이 저렴하여 부담이 적습니다.</td>
+                    <td>초기 비용이 높아 가입 부담이 있을 수 있습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top: 25px;"><strong>비갱신형 치아보험 가입 팁:</strong> 보험사별 비갱신형 치아보험 견적 비교 시, 초기 보험료는 물론 보장 기간(만기 시점), 납입 기간(10년납, 20년납) 등을 종합적으로 고려해야 합니다. 치아보험 저렴한곳을 찾기 위해 단순히 초기 비용만 비교하면 장기적으로 손해를 볼 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>치과보험비용 절약을 위한 핵심 가이드</h2>
+        <p>치아보험 가입 전 몇 가지 핵심 요소를 체크하면 불필요한 비용을 줄이고 보장 효과를 극대화할 수 있습니다. 특히 2026년 이후 강화된 보험 기준을 고려할 때 더욱 신중한 접근이 필요합니다.</p>
+
+        <h3>1. 면책기간 및 감액기간 확인</h3>
+        <p>대부분의 치아보험 상품은 가입 즉시 보장을 시작하지 않습니다. 일정 기간(면책기간, 보통 90일) 동안은 보험금을 지급하지 않으며, 면책기간 이후에도 일정 기간(감액기간, 보통 1~2년) 동안은 보험금의 50%만 지급하는 경우가 많습니다. 특히 임플란트, 크라운 등 고액 보철 치료에 대한 감액기간은 길게 설정되는 경우가 많으므로, 치과보험 가입 시 급한 치료가 있다면 이 기간을 반드시 확인해야 합니다. 치아보험 저렴한곳을 찾는 것만큼 중요한 부분입니다.</p>
+
+        <h3>2. 보철 치료 vs 보존 치료 보장 범위 점검</h3>
+        <p>치과보험은 크게 보존 치료 (충치 치료, 레진, 인레이, 온레이 등)와 보철 치료 (임플란트, 크라운, 틀니 등)로 나뉩니다. 치과보험비용을 낮추고 싶다면 보철 치료 보장을 제외하고 보존 치료만 집중적으로 보장받는 상품을 고려할 수 있습니다. 하지만 고연령층이거나 치아 상태가 좋지 않은 경우, 임플란트 치아보험이 포함된 상품이 장기적으로 유리할 수 있습니다.</p>
+
+        <h3>3. 어린이 치아보험의 특수성</h3>
+        <p>어린이 치아보험은 영구치가 완성되는 시기(보통 7세~10세) 이전에 가입하는 것이 유리합니다. 유치 치료와 영구치 치료 모두 보장받을 수 있으며, 면책기간 없이 가입 가능한 상품도 많습니다. 특히 교정 치료 보장이 포함된 상품도 있으므로, 어린이 치아보험을 가입할 때는 보장 기간과 갱신형/비갱신형을 신중하게 선택해야 합니다.</p>
+
+        <h3>4. 치아보험 내돈내산 후기 활용 및 비교 견적</h3>
+        <p>많은 사람들이 치과보험 추천 상품을 검색하지만, 개인의 상황에 따라 최적의 상품은 다릅니다. 다양한 치아보험 비교사이트나 내돈내산 후기를 참고하여 상품의 장단점을 파악하고, 여러 보험사의 견적을 받아보는 것이 좋습니다. 치아보험비용 예상 금액을 비교할 때 보장 내역이 동일한지 꼼꼼하게 확인하세요. 치아보험 싼곳만 찾기보다는 보장이 확실한 상품을 선택하는 것이 현명합니다.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+
+        <div class="faq-item">
+          <h3>Q1: 치과보험비용, 연령대별 평균 금액 차이가 있나요?</h3>
+          <p>A: 네, 연령대에 따라 치과보험비용 평균 금액에 차이가 발생합니다. 20~30대 젊은 층은 비교적 낮은 월 보험료로 가입할 수 있지만, 40대 이상부터는 치아 상태 악화 가능성으로 인해 보험료가 상승합니다. 특히 50~60대에서는 임플란트나 틀니 등 보철 치료에 대한 수요가 높아지므로, 비갱신형 가입 시 초기 비용이 높을 수 있습니다. 보험사별로 연령대별 요율이 다르기 때문에 치아보험 비교사이트를 통해 정확한 개인별 견적을 확인하는 것이 필수입니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q2: 치과보험 가입 시 고지 의무는 무엇이며 왜 중요한가요?</h3>
+          <p>A: 치과보험 가입 시 보험사는 가입자의 현재 치아 상태에 대한 고지 의무를 요구합니다. 최근 1년 이내 치과 치료 여부, 5년 이내 충치 또는 잇몸 질환으로 인한 치료 경험, 틀니 사용 여부 등을 정확하게 알려야 합니다. 고지 의무를 위반할 경우 보험 가입이 거절되거나, 추후 보험금 지급이 거부될 수 있습니다. 특히 기존에 치료한 치아는 보장에서 제외되므로, 가입 전 정확한 상태를 확인하고 고지해야 합니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q3: 치과보험의 임플란트 보장 금액은 어떻게 되나요?</h3>
+          <p>A: 임플란트 보장 금액은 상품과 특약에 따라 크게 다릅니다. 일반적인 상품의 경우 임플란트 1개당 50만원에서 200만원까지 보장합니다. 일부 상품은 개수 제한 없이 무제한으로 보장하기도 하지만, 이 경우 치과보험비용이 상당히 높습니다. 또한 임플란트 보장에는 면책기간과 감액기간이 길게 적용되는 경우가 많습니다(가입 후 2년 경과 시 100% 보장 등). 임플란트 보장을 원하는 경우, 보장 금액, 개수 제한, 면책기간을 꼼꼼히 비교해야 합니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q4: 치과보험 가입 전에 알아야 할 비갱신형 치아보험의 장단점은 무엇인가요?</h3>
+          <p>A: 비갱신형 치아보험의 가장 큰 장점은 보험료 변동 없이 장기간 안정적인 보장을 받을 수 있다는 점입니다. 특히 30대 중후반에 가입하여 10년 이상 유지할 경우 갱신형보다 총 납입 비용이 저렴해지는 경우가 많아 장기적으로 유리합니다. 단점으로는 초기 보험료가 갱신형에 비해 높아 가입 시 부담을 느낄 수 있다는 점입니다. 또한, 물가 상승률을 반영하지 못할 수 있어 미래 가치 하락에 대한 고려가 필요합니다.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container references">
+        <h2>신뢰할 수 있는 외부 자료 및 참고 링크</h2>
+        <p>치과보험 가입 전 반드시 확인해야 할 공신력 있는 기관의 자료를 참고하여 올바른 정보를 얻으세요.</p>
+        <ul>
+          <li><a href="https://www.fss.or.kr/fss/main/index.do" target="_blank" rel="noopener">금융감독원 (FSS) – 금융소비자 정보포털 파인</a><br>보험 상품의 약관, 소비자 유의사항, 민원 사례 등을 확인할 수 있습니다. 치과보험 가입 시 발생하는 소비자 피해 사례를 미리 방지하는 데 도움이 됩니다.</li>
+          <li><a href="https://www.mohw.go.kr/react/index.jsp" target="_blank" rel="noopener">보건복지부 (Ministry of Health and Welfare)</a><br>국가 구강 건강 증진 정책 및 치과 치료에 대한 최신 건강보험 적용 기준 정보를 확인할 수 있습니다.</li>
+          <li><a href="https://www.consumer.go.kr/main/index.do" target="_blank" rel="noopener">한국소비자원 (Korea Consumer Agency)</a><br>치과보험 관련 소비자 분쟁 해결 사례, 상품 비교 정보 등을 제공합니다.</li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EC%B9%98%EC%95%84%EB%B3%B4%ED%97%98" target="_blank" rel="noopener">치아보험 - 위키백과</a><br>치아보험의 개념, 역사, 보장 내용, 종류 등 기본 정보를 종합적으로 파악할 수 있습니다.</li>
+          <li><a href="https://www.nhis.or.kr/" target="_blank" rel="noopener">국민건강보험공단 (National Health Insurance Service)</a><br>건강보험 적용을 받는 치과 치료 항목과 본인 부담률을 확인할 수 있습니다. 치아보험 가입 시 건강보험과 중복되지 않는 보장 영역을 파악하는 데 유용합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // FAQ 토글 기능
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+      item.addEventListener('click', event => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+
+  
